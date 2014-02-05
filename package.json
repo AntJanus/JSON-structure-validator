@@ -1,0 +1,24 @@
+{
+  "name": "JSON Structure Validator",
+  "version": "0.0.1",
+  "description": "Compares an empty JSON object against another to ensure a minimal node structure existence.",
+  "main": "./lib/json-structure-validator.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AntJanus/JSON-structure-validator"
+  },
+  "keywords": [
+    "JSON",
+    "Test"
+  ],
+  "author": "Antonin Januska <http://antjanus.com>. [Twitter](http://twitter.com/antjanus).",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://en.wikipedia.org/wiki/MIT_License"
+    }
+  ],
+  "dependencies": {
+    "lodash": "~2.x",
+  }
+}
