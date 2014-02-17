@@ -1,6 +1,6 @@
 {
   "name": "json-structure-validator",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Compares an empty JSON object against another to ensure a minimal node structure existence.",
   "main": "./lib/json-structure-validator.js",
   "repository": {
