@@ -18,7 +18,8 @@
       "url": "http://en.wikipedia.org/wiki/MIT_License"
     }
   ],
-  "dependencies": {
-    "lodash": "~2.x"
+  "dependencies": {},
+  "devDependencies": {
+    "jest": "15.1.1"
   }
 }
