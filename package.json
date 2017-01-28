@@ -17,8 +17,5 @@
       "type": "MIT",
       "url": "http://en.wikipedia.org/wiki/MIT_License"
     }
-  ],
-  "dependencies": {
-    "lodash": "~4.x"
-  }
+  ]
 }
