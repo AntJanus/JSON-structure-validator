@@ -1,6 +1,6 @@
 {
   "name": "json-structure-validator",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "description": "Compares an empty JSON object against another to ensure a minimal node structure existence.",
   "main": "./lib/json-structure-validator.js",
   "repository": {
@@ -17,5 +17,13 @@
       "type": "MIT",
       "url": "http://en.wikipedia.org/wiki/MIT_License"
     }
-  ]
+  ],
+  "scripts": {
+    "release": "standard-version",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "jest": "18.1.0",
+    "standard-version": "4.0.0"
+  }
 }
