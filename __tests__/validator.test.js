@@ -67,7 +67,33 @@ describe('JSON Structure Validator', () => {
     };
 
     expect(validator(structureTemplate, structureToTest)).toBeTruthy();
-  })
+  });
+
+  it('should validate using rich objects', () => {
+    const structureTemplate = {
+      id: 1,
+      foo: 'some string',
+      bar: 'ba',
+      baz: {
+        id: '',
+        foo: 15
+      },
+      test: 0.1
+    };
+
+    const structureToTest = {
+      id: 19,
+      foo: '',
+      bar: '',
+      baz: {
+        id: 'hello',
+        foo: ''
+      },
+      test: ''
+    };
+
+    expect(validator(structureTemplate, structureToTest)).toBeTruthy();
+  });
 });
 
 
