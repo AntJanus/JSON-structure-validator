@@ -23,35 +23,37 @@ Usage
 ========================
 The structure validator works with any framework and can be used outside of testing; however, I built it to work with [Hippie](https://github.com/vesln/hippie) which is wonderful at API testing.
 
-    var hippie = require('hippie');
-    var compareJSON = require('JSON-structure-validator');
+```js
+var hippie = require('hippie');
+var compareJSON = require('JSON-structure-validator');
 
-    var emptyMap = {
-        "name" : "",
-        "username": "",
-        "id": "",
-        "image_url": ""
-    };
+var emptyMap = {
+    "name" : "",
+    "username": "",
+    "id": "",
+    "image_url": ""
+};
 
-    var api = function() {
-        return hippie().json().base('http://localhost:3000/api/user');
-    };
+var api = function() {
+    return hippie().json().base('http://localhost:3000/api/user');
+};
 
-    describe('User API', function() {
-        it('should return all user information', function(done){
-            api()
-                .get('/13')
-                .expect(function(res, body, next){
-                    var comparison = compareJSON(emptyMap, body);
-                    if(comparison == true) {
-                        next();
-                    } else {
-                        throw new Error(comparison);
-                    }
-                })
-                .end();
-        });
+describe('User API', function() {
+    it('should return all user information', function(done){
+        api()
+            .get('/13')
+            .expect(function(res, body, next){
+                var comparison = compareJSON(emptyMap, body);
+                if(comparison == true) {
+                    next();
+                } else {
+                    throw new Error(comparison);
+                }
+            })
+            .end();
     });
+});
+```
 
 Again, no need to use Hippie. But in this case, the `body` of the `/api/user/13` request is required to have AT LEAST the keys present in `emptyMap`. If the comparison fails, the full path of the failure will be returned. For instance, if `body` was missing `image_url`, the error would read `Objects do not match at image_url`.
 
@@ -59,19 +61,21 @@ What about deep objects? I use the [Treeize](https://www.npmjs.org/package/treei
 
 Let's take our last example and extend the `emptyMap` to this:
 
-    var emptyMapSingle = {
-            "name" : "",
-            "username": "",
-            "id": "",
-            "image_url": "",
-            "aliases": [ {
-                "alias": "",
-                "id": ""
-            }]
-        };
+```js
+var emptyMapSingle = {
+        "name" : "",
+        "username": "",
+        "id": "",
+        "image_url": "",
+        "aliases": [ {
+            "alias": "",
+            "id": ""
+        }]
+    };
 
-    var emptyMap = [];
-    emptyMap.push(emptyMapSingle);
+var emptyMap = [];
+emptyMap.push(emptyMapSingle);
+```
 
 Our map would then match against the feed like so.
 
@@ -79,7 +83,9 @@ Our map would then match against the feed like so.
 
 What if you want an EXACT match as well as a minimal match?
 
-    var comparison = compareJSON(body, emptyMap);
-    var comparison2 = compareJSON(emptyMap, body);
+```js
+var comparison = compareJSON(body, emptyMap);
+var comparison2 = compareJSON(emptyMap, body);
+```
 
 In this case, the `emptyMap` will be required to have all of the keys present in `body`, meaning that any keys that are EXTRA in the body and are not present in our emptyMap will throw an error. Doing a backward match in `comparison2` will also ensure that any stray keys that are available in our emptyMap but are NOT in body (thus would not be matched against in the first comparison) would throw an error. That way we're covered both ways!
